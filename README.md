@@ -11,7 +11,7 @@ really funny.
 How to play
 ------------
 
-Find the game <a href="https://alexi.ch/pong/">online, then play:
+Find the game <a href="https://alexi.ch/pong/">online</a>, then play:
 
 * Player 1: UP: 'a', DOWN: 'y'
 * Player 2: UP: 'k', DOWN: 'm'
