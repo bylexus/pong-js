@@ -4,7 +4,7 @@ export default class Paddle extends Drawable {
 	constructor(canvas, context, xPos, upKey = 65, downKey = 89) {
 		super(canvas, context);
 		this.width = 20;
-		this.height = 100;
+		this.height = 120;
 		this.x = xPos + this.width < canvas.width? xPos : canvas.width - this.width;
 		this.y = this.canvas.height / 2;
 		this.dirY = 0;

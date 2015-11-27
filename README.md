@@ -15,6 +15,7 @@ Find the game <a href="https://alexi.ch/pong/">online</a>, then play:
 
 * Player 1: UP: 'a', DOWN: 'y'
 * Player 2: UP: 'k', DOWN: 'm'
+* Pause / Run: SPACE
 
 A Screen:
 
@@ -22,7 +23,6 @@ A Screen:
 
 Develop
 --------
-
 
 ### debug
 
@@ -35,5 +35,10 @@ Develop
 * gulp build:prod
 * gulp export # --> creates a prod build version in ./export/
 
+Disclaimer
+----------
+
+Don't blame me for any errors, addictions or broken fingers. This game was made just for fun, so play and enjoy!
+Let me know if you did so.
 
 (c) 2015 Alexander Schenkel, copyright license

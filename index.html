@@ -4,19 +4,31 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>PongJS</title>
+	<style type="text/css">
+		html, body {
+			font-family: "Courier New", courier;
+		}
+	</style>
 </head>
 <body>
-	<h1>Pong!JS</h1>
-	<p>Player 1 up: <code>a</code>, down: <code>y</code> | Player 2 up: <code>k</code>, down: <code>m</code></p>
-	<div style="width: 800px;height: 200px">
-		<canvas id="scoreCanvas" width="800" height="200"></canvas>
+	<h1>Pong!JS <p style="font-size:10pt;font-weight:normal; display: inline">Player 1 up: <strong><code>[a]</code></strong>, down: <strong><code>[y]</code></strong> | Player 2 up: <strong><code>[k]</code></strong>, down: <strong><code>[m]</code></strong>| Pause: <strong><code>[space]</code></strong></p></h1>
+	
+	<div style="width: 800px;height: 150px">
+		<canvas id="scoreCanvas" width="800" height="150"></canvas>
 	</div>
 	<div style="width: 800px;height: 600px">
 		<canvas id="canvas" width="800" height="600"></canvas>
 	</div>
 
+	<audio src="resources/ping.mp3" id="pingAudio" preload="auto"></audio>
+	<audio src="resources/pong.mp3" id="pongAudio" preload="auto"></audio>
+	<audio src="resources/horn.mp3" id="hornAudio" preload="auto"></audio>
+
 	<footer>
-	&copy; 2015 <a href="mailto:info@alexi.ch">Alexander Schenkel</a>
+	&copy; 2015 <a href="mailto:info@alexi.ch">Alexander Schenkel</a> | check project on <a href="https://github.com/bylexus/pong-js">github</a>
+	<h4>Disclaimer</h4>
+	<p>Don't blame me for any errors, addictions or broken fingers. This game was made just for fun, so play and enjoy!
+Let me know if you did so.</p>
 	</footer>
 
 <!-- build:js -->

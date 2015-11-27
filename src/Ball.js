@@ -7,14 +7,15 @@ export default class Ball extends Drawable {
 		this.y = canvas.height / 2;
 		this.dirX = 1;
 		this.dirY = 1;
-		this.speed = 600;
+		this.speedX = 400;
+		this.speedY = 400;
 		this.radius = 20;
 		this.colliders = [];
 	}
 
 	draw(ts, delta) {
-		this.x += this.dirX * this.speed * delta / 1000;
-		this.y += this.dirY * this.speed * delta / 1000;
+		this.x += this.dirX * this.speedX * delta / 1000;
+		this.y += this.dirY * this.speedY * delta / 1000;
 
 		if (this.x > this.canvas.width) {
 			this.x = 2*canvas.width - this.x;
@@ -59,5 +60,13 @@ export default class Ball extends Drawable {
 	addColliders(colliders) {
 		if (!colliders.forEach) colliders = [colliders]; // if it walks like a duck... array!
 		colliders.forEach((c) => this.colliders.push(c));
+	}
+
+	increaseSpeedY() {
+		this.speedY = Math.min(800, this.speedY * 1.25);
+	}
+
+	decreaseSpeedY() {
+		this.speedY = Math.max(300, this.speedY * 0.75);
 	}
 }

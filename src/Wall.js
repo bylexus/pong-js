@@ -1,11 +1,12 @@
 import Drawable from "./Drawable";
 
 export default class Wall extends Drawable {
-	constructor(canvas, context, bounds) {
+	constructor(canvas, context, bounds, color = '#ccc') {
 		super(canvas, context);
 		this._bounds = bounds;
 		this.highlightStart = false;
 		this.highlightDuration = 500;
+		this.color = color;
 	}
 
 	draw(ts, delta) {
@@ -19,7 +20,7 @@ export default class Wall extends Drawable {
 			let down = Math.max(204-val);
 			this.ctx.fillStyle = 'rgb('+Math.min(204+val,255)+','+down+','+down+')';
 		} else {
-			this.ctx.fillStyle = '#ccc';	
+			this.ctx.fillStyle = this.color;	
 		}
 		
 		this.ctx.fillRect(this._bounds.x,this._bounds.y,this._bounds.width,this._bounds.height);

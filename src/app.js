@@ -17,12 +17,47 @@ const bottomWall = new Wall(board.canvas,board.context,{x:0,y:canvas.height-10,w
 const leftWall = new Wall(board.canvas,board.context,{x:0,y:0,width:10,height:canvas.height});
 const rightWall = new Wall(board.canvas,board.context,{x:canvas.width-10,y:0,width:10,height:canvas.height});
 
-paddleLeft.collides = function(ball) {
-	ball.dirX = 1;
+const centerWall = new Wall(board.canvas,board.context,{x:canvas.width/2-5,y:0,width:10,height:canvas.height}, '#888');
+
+const pingAudio = document.getElementById('pingAudio');
+const pongAudio = document.getElementById('pongAudio');
+const hornAudio = document.getElementById('hornAudio');
+
+const changeBallSpeedOnPaddleTouch = function(ball, paddle) {
+	if (paddle.dirY === 1) {
+		if (ball.dirY === 1) {
+			ball.increaseSpeedY();
+		} else if (ball.dirY === -1) {
+			ball.decreaseSpeedY();
+		}
+		
+	} else if (paddle.dirY === -1) {
+		if (ball.dirY === -1) {
+			ball.increaseSpeedY();
+		} else if (ball.dirY === 1) {
+			ball.decreaseSpeedY();
+		}
+	}
 };
 
-paddleRight.collides = function(ball) {
+const togglePause = function() {
+	if (board.running) {
+		board.stop();
+	} else {
+		board.start();
+	}
+};
+
+paddleLeft.collides = function(ball, collider) {
+	ball.dirX = 1;
+	pingAudio.play();
+	changeBallSpeedOnPaddleTouch(ball, collider);
+};
+
+paddleRight.collides = function(ball, collider) {
 	ball.dirX = -1;
+	pongAudio.play();
+	changeBallSpeedOnPaddleTouch(ball, collider);
 };
 
 topWall.collides = function(ball) {
@@ -33,11 +68,13 @@ bottomWall.collides = function(ball) {
 };
 leftWall.collides = function(ball,collider) {
 	collider.highlight();
+	hornAudio.play();
 	ball.dirX = 1;
 	scoreBoard.incrementRight();
 };
 rightWall.collides = function(ball,collider) {
 	collider.highlight();
+	hornAudio.play();
 	ball.dirX = -1;
 	scoreBoard.incrementLeft();
 };
@@ -45,12 +82,22 @@ rightWall.collides = function(ball,collider) {
 scoreBoard.update();
 
 ball.addColliders([paddleLeft,paddleRight,topWall,bottomWall,leftWall,rightWall]);
-board.addDrawable(ball);
+
 board.addDrawable(paddleLeft);
 board.addDrawable(paddleRight);
+
+board.addDrawable(centerWall);
 board.addDrawable(leftWall);
 board.addDrawable(rightWall);
 board.addDrawable(topWall);
 board.addDrawable(bottomWall);
-board.start();
 
+board.addDrawable(ball);
+
+canvas.focus();
+
+document.addEventListener('keydown', function(event) {
+	if (event.keyCode === 32) {
+		togglePause();
+	}
+});

@@ -15,7 +15,7 @@ function errorHandler(err) {
 }
  
 gulp.task('build', function () {
-  browserify({
+  return browserify({
     entries: 'src/app.js',
     extensions: ['.js'],
     debug: true
@@ -28,7 +28,7 @@ gulp.task('build', function () {
 });
 
 gulp.task('build:prod', function () {
-  browserify({
+  return browserify({
     entries: 'src/app.js',
     extensions: ['.js'],
     debug: false
@@ -50,6 +50,10 @@ gulp.task('export', ['clean:export','build:prod'],function(){
   // Copy dist files to export
   gulp.src(['build/app-release.js'])
   .pipe(gulp.dest('./export/'));
+
+  // Copy resource files to export
+  gulp.src(['resources/**/*'])
+  .pipe(gulp.dest('./export/resources/'));
 
   // copy index.html, by inserting the prod app js file
   gulp.src('index.html')
